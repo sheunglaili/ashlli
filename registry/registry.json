@@ -1,0 +1,304 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "ashlli",
+  "homepage": "https://github.com/sheunglaili/ashlli",
+  "items": [
+    {
+      "name": "ashlli",
+      "type": "registry:style",
+      "title": "Ashlli Style",
+      "description": "Monospaced ink-on-paper design system. Installs all theme tokens, fonts, and Tailwind v4 configuration.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "cssVars": {
+        "light": {
+          "paper": "oklch(100% 0 0)",
+          "paper-2": "oklch(96.5% 0 0)",
+          "ink": "oklch(15% 0 0)",
+          "ink-2": "oklch(45% 0 0)",
+          "rule": "oklch(83% 0 0)",
+          "accent": "oklch(15% 0 0)",
+          "accent-ink": "oklch(100% 0 0)",
+          "focus": "oklch(15% 0 0)",
+          "success": "oklch(55% 0.18 145)",
+          "warning": "oklch(65% 0.18 75)",
+          "error": "oklch(55% 0.22 25)",
+          "info": "oklch(55% 0.18 240)"
+        },
+        "dark": {
+          "paper": "oklch(12% 0 0)",
+          "paper-2": "oklch(18% 0 0)",
+          "ink": "oklch(95% 0 0)",
+          "ink-2": "oklch(68% 0 0)",
+          "rule": "oklch(30% 0 0)",
+          "accent": "oklch(95% 0 0)",
+          "accent-ink": "oklch(12% 0 0)",
+          "focus": "oklch(95% 0 0)",
+          "success": "oklch(70% 0.18 145)",
+          "warning": "oklch(75% 0.18 75)",
+          "error": "oklch(70% 0.22 25)",
+          "info": "oklch(70% 0.18 240)"
+        },
+        "theme": {
+          "font-display": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-body": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-mono": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "radius-card": "8px",
+          "radius-pill": "999px",
+          "radius-input": "8px",
+          "text-2xs": "0.65rem",
+          "text-2xs-plus": "0.68rem",
+          "text-xs": "0.72rem",
+          "text-xs-plus": "0.75rem",
+          "text-sm-minus": "0.78rem",
+          "text-sm": "0.85rem",
+          "text-sm-plus": "0.88rem",
+          "text-base": "0.9rem",
+          "text-base-plus": "0.95rem",
+          "text-lg": "1.05rem",
+          "text-xl": "1.3rem",
+          "text-display": "2.25rem",
+          "space-3xs": "0.25rem",
+          "space-2xs": "0.5rem",
+          "space-xs": "0.75rem",
+          "space-sm": "1rem",
+          "space-md": "1.5rem",
+          "space-lg": "2.5rem",
+          "space-xl": "3.5rem",
+          "space-2xl": "5rem",
+          "space-3xl": "6rem"
+        }
+      },
+      "css": {
+        "@import url(\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap\")": {},
+        "@custom-variant dark (&:where(.dark, .dark *))": {}
+      },
+      "files": []
+    },
+    {
+      "name": "icons",
+      "type": "registry:ui",
+      "title": "Icons",
+      "description": "Shared SVG icon library used by code-pill, dialog, and toast.",
+      "files": [
+        {
+          "path": "src/components/ui/icons.tsx",
+          "type": "registry:ui",
+          "target": "@ui/icons.tsx"
+        }
+      ]
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Collapsible content sections.",
+      "files": [
+        {
+          "path": "src/components/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "@ui/accordion.tsx"
+        }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Inline status and category labels.",
+      "files": [
+        {
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "@ui/badge.tsx"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Primary action component with variant and size props.",
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "@ui/button.tsx"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Content container with header, body, and footer slots.",
+      "files": [
+        {
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "@ui/card.tsx"
+        }
+      ]
+    },
+    {
+      "name": "code-pill",
+      "type": "registry:ui",
+      "title": "Code Pill",
+      "description": "Monospaced inline code with copy-to-clipboard.",
+      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "files": [
+        {
+          "path": "src/components/ui/code-pill.tsx",
+          "type": "registry:ui",
+          "target": "@ui/code-pill.tsx"
+        }
+      ]
+    },
+    {
+      "name": "definition-block",
+      "type": "registry:ui",
+      "title": "Definition Block",
+      "description": "Definition list with term and description pairing.",
+      "files": [
+        {
+          "path": "src/components/ui/definition-block.tsx",
+          "type": "registry:ui",
+          "target": "@ui/definition-block.tsx"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Modal dialog with overlay, header, and close button.",
+      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "files": [
+        {
+          "path": "src/components/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "@ui/dialog.tsx"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Text input with label and optional error state.",
+      "files": [
+        {
+          "path": "src/components/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "@ui/input.tsx"
+        }
+      ]
+    },
+    {
+      "name": "layout",
+      "type": "registry:ui",
+      "title": "Layout",
+      "description": "Grid and flex layout primitives.",
+      "files": [
+        {
+          "path": "src/components/ui/layout.tsx",
+          "type": "registry:ui",
+          "target": "@ui/layout.tsx"
+        }
+      ]
+    },
+    {
+      "name": "leaderboard",
+      "type": "registry:ui",
+      "title": "Leaderboard",
+      "description": "Ranked progress bar with label and value.",
+      "registryDependencies": ["sheunglaili/ashlli/progress-bar"],
+      "files": [
+        {
+          "path": "src/components/ui/leaderboard-bar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/leaderboard-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "progress-bar",
+      "type": "registry:ui",
+      "title": "Progress Bar",
+      "description": "Determinate progress indicator with value label.",
+      "files": [
+        {
+          "path": "src/components/ui/progress-bar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/progress-bar.tsx"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "Range input with label and value display.",
+      "files": [
+        {
+          "path": "src/components/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "@ui/slider.tsx"
+        }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "Data table with header, body, and sortable columns.",
+      "files": [
+        {
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "@ui/table.tsx"
+        }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Tabbed content panels.",
+      "files": [
+        {
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "@ui/tabs.tsx"
+        }
+      ]
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "Notification toast with auto-dismiss.",
+      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "files": [
+        {
+          "path": "src/components/ui/toast.tsx",
+          "type": "registry:ui",
+          "target": "@ui/toast.tsx"
+        }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "Text styling primitives.",
+      "files": [
+        {
+          "path": "src/components/ui/typography.tsx",
+          "type": "registry:ui",
+          "target": "@ui/typography.tsx"
+        }
+      ]
+    }
+  ]
+}

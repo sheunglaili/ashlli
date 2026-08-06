@@ -1,0 +1,263 @@
+/* Hallmark · macrostructure: Long Document · tone: quiet technical reference · anchor hue: neutral ink
+ * pre-emit critique: P5 H4 E4 S4 R5 V4 · contrast: pass (40–41) · mobile: pass (49, 51, 56) */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Light mode (default) ─── */
+:root {
+  --color-paper: oklch(100% 0 0);
+  --color-paper-2: oklch(96.5% 0 0);
+  --color-ink: oklch(15% 0 0);
+  --color-ink-2: oklch(45% 0 0);
+  --color-rule: oklch(83% 0 0);
+  --color-accent: oklch(15% 0 0);
+  --color-accent-ink: oklch(100% 0 0);
+  --color-focus: oklch(15% 0 0);
+
+  --color-success: oklch(55% 0.18 145);
+  --color-warning: oklch(65% 0.18 75);
+  --color-error: oklch(55% 0.22 25);
+  --color-info: oklch(55% 0.18 240);
+}
+
+/* ─── Dark mode ─── */
+.dark {
+  --color-paper: oklch(12% 0 0);
+  --color-paper-2: oklch(18% 0 0);
+  --color-ink: oklch(95% 0 0);
+  --color-ink-2: oklch(68% 0 0);
+  --color-rule: oklch(30% 0 0);
+  --color-accent: oklch(95% 0 0);
+  --color-accent-ink: oklch(12% 0 0);
+  --color-focus: oklch(95% 0 0);
+
+  --color-success: oklch(70% 0.18 145);
+  --color-warning: oklch(75% 0.18 75);
+  --color-error: oklch(70% 0.22 25);
+  --color-info: oklch(70% 0.18 240);
+}
+
+/* ─── Tailwind v4 theme mapping ─── */
+@theme {
+  /* Colors (mapped from :root / .dark) */
+  --color-paper: var(--color-paper);
+  --color-paper-2: var(--color-paper-2);
+  --color-ink: var(--color-ink);
+  --color-ink-2: var(--color-ink-2);
+  --color-rule: var(--color-rule);
+  --color-accent: var(--color-accent);
+  --color-accent-ink: var(--color-accent-ink);
+  --color-focus: var(--color-focus);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
+  --color-error: var(--color-error);
+  --color-info: var(--color-info);
+
+  /* Fonts */
+  --font-display: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Border radii */
+  --radius-card: 8px;
+  --radius-pill: 999px;
+  --radius-input: 8px;
+
+  /* Font sizes — full scale */
+  --text-2xs: 0.65rem;
+  --text-2xs-plus: 0.68rem;
+  --text-xs: 0.72rem;
+  --text-xs-plus: 0.75rem;
+  --text-sm-minus: 0.78rem;
+  --text-sm: 0.85rem;
+  --text-sm-plus: 0.88rem;
+  --text-base: 0.9rem;
+  --text-base-plus: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.3rem;
+  --text-display: 2.25rem;
+
+  /* Spacing */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 3.5rem;
+  --space-2xl: 5rem;
+  --space-3xl: 6rem;
+}
+
+/* ─── Base styles ─── */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  min-height: 100%;
+  font-family: var(--font-body);
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  line-height: 1.5;
+  font-size: var(--text-base);
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+/* ─── Docs layout ─── */
+.docs-shell {
+  display: grid;
+  grid-template-columns: 15.5rem minmax(0, 1fr);
+  max-width: 82rem;
+  min-height: calc(100vh - 3.5rem);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.docs-sidebar {
+  position: sticky;
+  top: 3.5rem;
+  align-self: start;
+  max-height: calc(100vh - 3.5rem);
+  overflow-y: auto;
+  border-right: 1px solid var(--color-rule);
+  padding: var(--space-xl) var(--space-lg) var(--space-xl) 0;
+}
+
+.docs-sidebar__nav { display: grid; gap: var(--space-lg); }
+.docs-sidebar__group { display: grid; gap: var(--space-2xs); }
+.docs-sidebar__title, .docs-toc__title, .docs-kicker {
+  margin: 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+.docs-sidebar__links { display: grid; }
+.docs-sidebar__link {
+  display: block;
+  padding: 0.32rem 0;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+  text-decoration: none;
+  transition: color var(--dur-fast, 180ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
+}
+.docs-sidebar__link:hover, .docs-sidebar__link.active { color: var(--color-ink); }
+.docs-sidebar__link.active { font-weight: 650; }
+
+.docs-main { min-width: 0; padding: var(--space-xl) 0 var(--space-3xl) var(--space-xl); }
+.docs-article-layout { display: flex; gap: var(--space-xl); }
+.docs-article { width: min(100%, 43rem); min-width: 0; display: grid; gap: var(--space-2xl); }
+.docs-page-title { margin: var(--space-xs) 0 0; font-size: clamp(1.8rem, 3.5vw, var(--text-display)); line-height: 1.08; letter-spacing: -0.06em; overflow-wrap: anywhere; }
+.docs-intro { max-width: 39rem; margin: var(--space-sm) 0 0; color: var(--color-ink-2); font-size: var(--text-base); line-height: 1.75; }
+.docs-section { display: grid; gap: var(--space-sm); scroll-margin-top: 5rem; }
+.docs-section h2 { margin: 0; color: var(--color-ink); font-size: var(--text-lg); font-weight: 650; letter-spacing: -0.03em; line-height: 1.25; }
+.docs-section > p { margin: 0; color: var(--color-ink-2); font-size: var(--text-base); line-height: 1.75; }
+.docs-toc { position: sticky; top: 3.5rem; align-self: start; width: 10.5rem; flex: 0 0 10.5rem; max-height: calc(100vh - 3.5rem); overflow-y: auto; border-left: 1px solid var(--color-rule); padding: var(--space-xs) 0 var(--space-xs) var(--space-lg); }
+.docs-toc__links { display: grid; gap: var(--space-2xs); margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
+.docs-toc__item--nested { padding-left: var(--space-sm); }
+.docs-toc__link { color: var(--color-ink-2); font-size: var(--text-xs); line-height: 1.4; text-decoration: none; transition: color var(--dur-fast, 180ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); }
+.docs-toc__link:hover { color: var(--color-ink); }
+
+@media (max-width: 63.99rem) {
+  .docs-shell { display: block; padding: 0 var(--space-md); }
+  .docs-main { padding-left: 0; }
+}
+
+@media (max-width: 47.99rem) {
+  .docs-main { padding-top: var(--space-lg); }
+  .docs-article { gap: var(--space-xl); }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-2);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rule);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ink-2);
+}
+
+/* ─── Slider ─── */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+.slider::-webkit-slider-runnable-track {
+  height: 6px;
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  border: none;
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+.slider::-webkit-slider-thumb:active {
+  transform: scale(0.95);
+  opacity: 0.88;
+}
+.slider::-moz-range-track {
+  height: 6px;
+  background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-card);
+}
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: var(--color-ink);
+  border: none;
+  cursor: pointer;
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.15);
+}
+.slider::-moz-range-thumb:active {
+  transform: scale(0.95);
+  opacity: 0.88;
+}
+
+/* ─── Focus ─── */
+*:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
