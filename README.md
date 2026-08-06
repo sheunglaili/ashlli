@@ -1,208 +1,97 @@
-Welcome to your new TanStack Start app!
+# ashlli/ui
 
-# Getting Started
+A monospaced ink-on-paper design system for React, distributed as a [shadcn](https://ui.shadcn.com) compatible GitHub registry.
 
-To run this application:
+Install components straight into your project with the shadcn CLI. There's no lock-in — every component is copied into your codebase and fully yours to customize.
+
+## Requirements
+
+- A React + [Tailwind CSS v4](https://tailwindcss.com) project
+- The [shadcn](https://ui.shadcn.com) CLI
+
+## Quick Start
+
+1. Install the ashlli style (theme tokens, fonts, and Tailwind configuration):
+
+```bash
+npx shadcn@latest add sheunglaili/ashlli/ashlli
+```
+
+2. Add any component. Dependencies resolve automatically:
+
+```bash
+npx shadcn@latest add sheunglaili/ashlli/button
+npx shadcn@latest add sheunglaili/ashlli/toast
+```
+
+## Components
+
+| Registry name | Component | Description |
+|---|---|---|
+| `button` | Button | Primary action component with variant and size props. |
+| `badge` | Badge | Inline status and category labels. |
+| `card` | Card | Content container with header, body, and footer slots. |
+| `input` | Input | Text input with label and optional error state. |
+| `slider` | Slider | Range input with label and value display. |
+| `tabs` | Tabs | Tabbed content panels. |
+| `accordion` | Accordion | Collapsible content sections. |
+| `dialog` | Dialog | Modal dialog with overlay, header, and close button. |
+| `toast` | Toast | Notification toast with auto-dismiss. |
+| `table` | Table | Data table with header, body, and sortable columns. |
+| `layout` | Layout | Grid and flex layout primitives. |
+| `typography` | Typography | Text styling primitives. |
+| `definition-block` | Definition Block | Definition list with term and description pairing. |
+| `code-pill` | Code Pill | Monospaced inline code with copy-to-clipboard. |
+| `progress-bar` | Progress Bar | Determinate progress indicator with value label. |
+| `leaderboard` | Leaderboard | Ranked progress bar with label and value. |
+| `icons` | Icons | Shared SVG icon library used by code-pill, dialog, and toast. |
+
+`leaderboard` pulls in `progress-bar`, and `code-pill`, `dialog`, and `toast` pull in `icons` — the CLI resolves these dependencies for you.
+
+## Design Tokens
+
+The `ashlli` style installs the full token set as Tailwind v4 `@theme` variables in your `styles.css`, plus the JetBrains Mono font. Dark mode is automatic via the `.dark` class.
+
+| Token | Light | Dark | Utility |
+|---|---|---|---|
+| `paper` | white | near-black | `bg-paper`, `text-paper` |
+| `paper-2` | off-white | dark gray | `bg-paper-2`, `border-paper-2` |
+| `ink` | near-black | near-white | `text-ink`, `bg-ink` |
+| `ink-2` | mid-gray | mid-gray | `text-ink-2`, `bg-ink-2` |
+| `rule` | light gray | dark gray | `border-rule` |
+| `accent` | near-black | near-white | `bg-accent` |
+| `accent-ink` | white | near-black | `text-accent-ink` |
+| `focus` | near-black | near-white | `ring-focus` |
+| `success` | green | bright green | `bg-success`, `text-success` |
+| `warning` | amber | bright amber | `bg-warning`, `text-warning` |
+| `error` | red | bright red | `bg-error`, `text-error`, `border-error` |
+| `info` | blue | bright blue | `bg-info`, `text-info` |
+
+Radii (`--radius-card`, `--radius-pill`, `--radius-input`), type scale (`--text-*`), and spacing (`--space-*`) tokens are installed as well.
+
+## Local Development
+
+This repo is also a TanStack Start app that hosts the component docs:
 
 ```bash
 npm install
 npm run dev
 ```
 
-# Building For Production
-
-To build this application for production:
+Production build:
 
 ```bash
 npm run build
 ```
 
-## Styling
-
-This project uses [Tailwind CSS](https://tailwindcss.com/) for styling.
-
-### Removing Tailwind CSS
-
-If you prefer not to use Tailwind CSS:
-
-1. Remove the demo pages in `src/routes/demo/`
-2. Replace the Tailwind import in `src/styles.css` with your own styles
-3. Remove `tailwindcss()` from the plugins array in `vite.config.ts`
-4. Remove `@tailwindcss/vite` and `tailwindcss` from `package.json`
-
-## Linting & Formatting
-
-This project uses [Biome](https://biomejs.dev/) for linting and formatting. The following scripts are available:
-
+Validate the registry against the live repo:
 
 ```bash
-npm run lint
-npm run format
-npm run check
+npx shadcn@latest registry validate sheunglaili/ashlli
 ```
 
+## Registry Structure
 
-## Deploy with Nitro
-
-This project uses Nitro as a generic server adapter, so it can run on any Node-compatible host.
-
-```bash
-npm run build
-node dist/server/index.mjs
-```
-
-The build output is a self-contained Node server. To deploy, push the `dist/` directory to your host (Render, Fly.io, your own VPS, etc.) and run the server command above.
-
-For host-specific presets (Vercel, Netlify, Cloudflare, AWS Lambda, etc.) and tuning, see https://v3.nitro.build/deploy.
-
-
-
-## Routing
-
-This project uses [TanStack Router](https://tanstack.com/router) with file-based routing. Routes are managed as files in `src/routes`.
-
-### Adding A Route
-
-To add a new route to your application just add a new file in the `./src/routes` directory.
-
-TanStack will automatically generate the content of the route file for you.
-
-Now that you have two routes you can use a `Link` component to navigate between them.
-
-### Adding Links
-
-To use SPA (Single Page Application) navigation you will need to import the `Link` component from `@tanstack/react-router`.
-
-```tsx
-import { Link } from "@tanstack/react-router";
-```
-
-Then anywhere in your JSX you can use it like so:
-
-```tsx
-<Link to="/about">About</Link>
-```
-
-This will create a link that will navigate to the `/about` route.
-
-More information on the `Link` component can be found in the [Link documentation](https://tanstack.com/router/v1/docs/framework/react/api/router/linkComponent).
-
-### Using A Layout
-
-In the File Based Routing setup the layout is located in `src/routes/__root.tsx`. Anything you add to the root route will appear in all the routes. The route content will appear in the JSX where you render `{children}` in the `shellComponent`.
-
-Here is an example layout that includes a header:
-
-```tsx
-import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-
-export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { title: 'My App' },
-    ],
-  }),
-  shellComponent: ({ children }) => (
-    <html lang="en">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        <header>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-          </nav>
-        </header>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  ),
-})
-```
-
-More information on layouts can be found in the [Layouts documentation](https://tanstack.com/router/latest/docs/framework/react/guide/routing-concepts#layouts).
-
-## Server Functions
-
-TanStack Start provides server functions that allow you to write server-side code that seamlessly integrates with your client components.
-
-```tsx
-import { createServerFn } from '@tanstack/react-start'
-
-const getServerTime = createServerFn({
-  method: 'GET',
-}).handler(async () => {
-  return new Date().toISOString()
-})
-
-// Use in a component
-function MyComponent() {
-  const [time, setTime] = useState('')
-  
-  useEffect(() => {
-    getServerTime().then(setTime)
-  }, [])
-  
-  return <div>Server time: {time}</div>
-}
-```
-
-## API Routes
-
-You can create API routes by using the `server` property in your route definitions:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-import { json } from '@tanstack/react-start'
-
-export const Route = createFileRoute('/api/hello')({
-  server: {
-    handlers: {
-      GET: () => json({ message: 'Hello, World!' }),
-    },
-  },
-})
-```
-
-## Data Fetching
-
-There are multiple ways to fetch data in your application. You can use TanStack Query to fetch data from a server. But you can also use the `loader` functionality built into TanStack Router to load the data for a route before it's rendered.
-
-For example:
-
-```tsx
-import { createFileRoute } from '@tanstack/react-router'
-
-export const Route = createFileRoute('/people')({
-  loader: async () => {
-    const response = await fetch('https://swapi.dev/api/people')
-    return response.json()
-  },
-  component: PeopleComponent,
-})
-
-function PeopleComponent() {
-  const data = Route.useLoaderData()
-  return (
-    <ul>
-      {data.results.map((person) => (
-        <li key={person.name}>{person.name}</li>
-      ))}
-    </ul>
-  )
-}
-```
-
-Loaders simplify your data fetching logic dramatically. Check out more information in the [Loader documentation](https://tanstack.com/router/latest/docs/framework/react/guide/data-loading#loader-parameters).
-
-
-
-# Learn More
-
-You can learn more about all of the offerings from TanStack in the [TanStack documentation](https://tanstack.com).
-
-For TanStack Start specific documentation, visit [TanStack Start](https://tanstack.com/start).
+- `registry.json` — the registry manifest at the repo root, read by the shadcn CLI
+- `src/components/ui/*.tsx` — the source for every component
+- `src/routes/docs/components/*.tsx` — per-component docs pages
