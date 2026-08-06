@@ -113,7 +113,7 @@ When adding a new component to ashlli/ui, complete all of the steps below.
 
 ## 2. Register in the registry
 
-Edit `registry/registry.json` and add an entry to the `items` array. This repo is a **shadcn-compatible GitHub registry** — the `shadcn` CLI reads `registry.json` from the repo root.
+Edit `registry.json` (repo root) and add an entry to the `items` array. This repo is a **shadcn-compatible GitHub registry** — the `shadcn` CLI reads `registry.json` from the repo root.
 
 ```json
 {
