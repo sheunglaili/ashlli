@@ -37,7 +37,7 @@ function DocsIntroPage() {
           <p className="text-sm-plus text-ink-2 leading-relaxed">
             Unlike traditional UI kits that rely on heavy decorative gradients, rounded bubbly shapes, or multi-font families, <strong className="text-ink">ashlli/ui</strong> strictly enforces a single-family monospaced architecture using <strong className="text-ink">JetBrains Mono</strong> and <strong className="text-ink">oklch</strong> ink-on-paper tokens.
           </p>
-          <CodePill command="npx ashlli-ui add button" label="QUICKSTART" />
+          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/ashlli" label="QUICKSTART" />
         </section>
 
         {/* Section: Locked design.md */}

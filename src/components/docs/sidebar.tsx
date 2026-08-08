@@ -18,6 +18,7 @@ export const sidebarNav: SidebarNavGroup[] = [
       { title: 'Introduction', href: '/docs' },
       { title: 'Installation', href: '/docs/installation' },
       { title: 'Design Tokens (design.md)', href: '/docs/tokens' },
+      { title: 'Agent Skills', href: '/docs/agents' },
     ],
   },
   {

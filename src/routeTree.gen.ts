@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocsRouteImport } from './routes/docs'
 import { Route as DocsIndexRouteImport } from './routes/docs/index'
+import { Route as DocsAgentsRouteImport } from './routes/docs/agents'
 import { Route as DocsBenchmarksRouteImport } from './routes/docs/benchmarks'
 import { Route as DocsInstallationRouteImport } from './routes/docs/installation'
 import { Route as DocsTokensRouteImport } from './routes/docs/tokens'
@@ -46,6 +47,11 @@ const DocsRoute = DocsRouteImport.update({
 const DocsIndexRoute = DocsIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => DocsRoute,
+} as any)
+const DocsAgentsRoute = DocsAgentsRouteImport.update({
+  id: '/agents',
+  path: '/agents',
   getParentRoute: () => DocsRoute,
 } as any)
 const DocsBenchmarksRoute = DocsBenchmarksRouteImport.update({
@@ -156,6 +162,7 @@ const DocsComponentsTypographyRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteWithChildren
+  '/docs/agents': typeof DocsAgentsRoute
   '/docs/benchmarks': typeof DocsBenchmarksRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/tokens': typeof DocsTokensRoute
@@ -180,6 +187,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/docs/agents': typeof DocsAgentsRoute
   '/docs/benchmarks': typeof DocsBenchmarksRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/tokens': typeof DocsTokensRoute
@@ -206,6 +214,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/docs': typeof DocsRouteWithChildren
+  '/docs/agents': typeof DocsAgentsRoute
   '/docs/benchmarks': typeof DocsBenchmarksRoute
   '/docs/installation': typeof DocsInstallationRoute
   '/docs/tokens': typeof DocsTokensRoute
@@ -233,6 +242,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/docs'
+    | '/docs/agents'
     | '/docs/benchmarks'
     | '/docs/installation'
     | '/docs/tokens'
@@ -257,6 +267,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/docs/agents'
     | '/docs/benchmarks'
     | '/docs/installation'
     | '/docs/tokens'
@@ -282,6 +293,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/docs'
+    | '/docs/agents'
     | '/docs/benchmarks'
     | '/docs/installation'
     | '/docs/tokens'
@@ -331,6 +343,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/docs/'
       preLoaderRoute: typeof DocsIndexRouteImport
+      parentRoute: typeof DocsRoute
+    }
+    '/docs/agents': {
+      id: '/docs/agents'
+      path: '/agents'
+      fullPath: '/docs/agents'
+      preLoaderRoute: typeof DocsAgentsRouteImport
       parentRoute: typeof DocsRoute
     }
     '/docs/benchmarks': {
@@ -477,6 +496,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface DocsRouteChildren {
+  DocsAgentsRoute: typeof DocsAgentsRoute
   DocsBenchmarksRoute: typeof DocsBenchmarksRoute
   DocsInstallationRoute: typeof DocsInstallationRoute
   DocsTokensRoute: typeof DocsTokensRoute
@@ -501,6 +521,7 @@ interface DocsRouteChildren {
 }
 
 const DocsRouteChildren: DocsRouteChildren = {
+  DocsAgentsRoute: DocsAgentsRoute,
   DocsBenchmarksRoute: DocsBenchmarksRoute,
   DocsInstallationRoute: DocsInstallationRoute,
   DocsTokensRoute: DocsTokensRoute,

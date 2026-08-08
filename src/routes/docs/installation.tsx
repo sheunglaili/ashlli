@@ -2,9 +2,8 @@ import React from 'react'
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { Badge } from '../../components/ui/badge'
 import { CodePill } from '../../components/ui/code-pill'
-import { DefinitionBlock } from '../../components/ui/definition-block'
 import { Toc } from '../../components/docs/toc'
-import { ArrowLeft, ArrowRight, Terminal } from '../../components/ui/icons'
+import { ArrowLeft, ArrowRight } from '../../components/ui/icons'
 
 export const Route = createFileRoute('/docs/installation')({
   component: InstallationPage,
@@ -12,9 +11,10 @@ export const Route = createFileRoute('/docs/installation')({
 
 function InstallationPage() {
   const tocItems = [
-    { id: 'step-1', title: 'Step 1: Copy design.md' },
-    { id: 'step-2', title: 'Step 2: Add CSS Tokens' },
-    { id: 'step-3', title: 'Step 3: Import Components' },
+    { id: 'requirements', title: 'Requirements' },
+    { id: 'step-1', title: 'Step 1: Install the ashlli style' },
+    { id: 'step-2', title: 'Step 2: Add components' },
+    { id: 'step-3', title: 'Step 3: Use a component' },
   ]
 
   return (
@@ -26,9 +26,29 @@ function InstallationPage() {
             Installation & Setup
           </h1>
           <p className="text-base-plus text-ink-2">
-            How to set up ashlli/ui components and integrate design.md tokens into your TanStack React project.
+            Install ashlli/ui with the shadcn CLI. Every component is copied into your project — no lock-in, fully yours to customize.
           </p>
         </div>
+
+        {/* Requirements */}
+        <section id="requirements" className="space-y-3">
+          <div className="flex items-center gap-2">
+            <span className="w-6 h-6 rounded bg-ink text-accent-ink font-bold text-xs flex items-center justify-center">
+              ✓
+            </span>
+            <h2 className="text-lg font-bold uppercase text-ink">Requirements</h2>
+          </div>
+          <ul className="space-y-2 text-sm text-ink-2 border border-rule rounded-card p-4 bg-paper-2">
+            <li className="flex items-start gap-2">
+              <span className="text-ink font-bold">1.</span>
+              <span>A React project with <strong className="text-ink">Tailwind CSS v4</strong>.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-ink font-bold">2.</span>
+              <span>The <strong className="text-ink">shadcn</strong> CLI (invoked via <code className="bg-paper px-1.5 py-0.5 border border-rule rounded">npx shadcn@latest</code>).</span>
+            </li>
+          </ul>
+        </section>
 
         {/* Step 1 */}
         <section id="step-1" className="space-y-3">
@@ -36,12 +56,12 @@ function InstallationPage() {
             <span className="w-6 h-6 rounded bg-ink text-accent-ink font-bold text-xs flex items-center justify-center">
               1
             </span>
-            <h2 className="text-lg font-bold uppercase text-ink">Copy design.md into your project root</h2>
+            <h2 className="text-lg font-bold uppercase text-ink">Install the ashlli style</h2>
           </div>
           <p className="text-sm text-ink-2 leading-relaxed">
-            Ensure <code className="bg-paper-2 px-1.5 py-0.5 border border-rule rounded">design.md</code> is placed at the root of your repository so Hallmark skills and AI agents follow the locked system rules.
+            Adds the theme tokens, fonts, and Tailwind configuration to your project:
           </p>
-          <CodePill command="cp ./design.md ./my-app/design.md" label="SHELL" />
+          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/ashlli" label="SHELL" />
         </section>
 
         {/* Step 2 */}
@@ -50,24 +70,13 @@ function InstallationPage() {
             <span className="w-6 h-6 rounded bg-ink text-accent-ink font-bold text-xs flex items-center justify-center">
               2
             </span>
-            <h2 className="text-lg font-bold uppercase text-ink">Include Google Font & OKLCH Tokens</h2>
+            <h2 className="text-lg font-bold uppercase text-ink">Add components</h2>
           </div>
           <p className="text-sm text-ink-2 leading-relaxed">
-            Import JetBrains Mono in your <code className="bg-paper-2 px-1.5 py-0.5 border border-rule rounded">src/styles.css</code>:
+            Add any component by registry name. Dependencies resolve automatically:
           </p>
-          <div className="p-4 bg-ink text-accent-ink rounded-card text-sm-minus">
-            <pre>
-              <code>{`@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap');
-
-:root {
-  --color-paper: oklch(100% 0 0);
-  --color-paper-2: oklch(96.5% 0 0);
-  --color-ink: oklch(15% 0 0);
-  --color-rule: oklch(88% 0 0);
-  --font-mono: "JetBrains Mono", monospace;
-}`}</code>
-            </pre>
-          </div>
+          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/button" label="SHELL" />
+          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/toast" label="SHELL" />
         </section>
 
         {/* Step 3 */}
@@ -76,15 +85,15 @@ function InstallationPage() {
             <span className="w-6 h-6 rounded bg-ink text-accent-ink font-bold text-xs flex items-center justify-center">
               3
             </span>
-            <h2 className="text-lg font-bold uppercase text-ink">Import and Use Components</h2>
+            <h2 className="text-lg font-bold uppercase text-ink">Use a component</h2>
           </div>
           <p className="text-sm text-ink-2 leading-relaxed">
-            Import components directly into your TanStack route components:
+            Import components from <code className="bg-paper-2 px-1.5 py-0.5 border border-rule rounded">@/components/ui</code>:
           </p>
           <div className="p-4 bg-ink text-accent-ink rounded-card text-sm-minus">
             <pre>
-              <code>{`import { Button } from './components/ui/button'
-import { Badge } from './components/ui/badge'
+              <code>{`import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export function MyPage() {
   return (

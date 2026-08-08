@@ -67,7 +67,17 @@ The `ashlli` style installs the full token set as Tailwind v4 `@theme` variables
 | `error` | red | bright red | `bg-error`, `text-error`, `border-error` |
 | `info` | blue | bright blue | `bg-info`, `text-info` |
 
-Radii (`--radius-card`, `--radius-pill`, `--radius-input`), type scale (`--text-*`), and spacing (`--space-*`) tokens are installed as well.
+Radii (`--radius-card`, `--radius-pill`, `--radius-input`) and type scale (`--text-*`) install as `@theme` tokens; spacing ships as `--spacing-*` CSS variables with utilities on Tailwind's built-in numeric scale (`gap-4`, `px-6`, `space-y-4`).
+
+## Agent Skill
+
+AI coding assistants can learn how to use ashlli/ui from the bundled agent skill (Agent Skills format, loadable in Claude Code, Cursor, opencode, etc.):
+
+```bash
+npx skills add sheunglaili/ashlli --skill ashlli
+```
+
+The skill lives in `skills/ashlli/` and teaches agents how to install components, use the design tokens, and follow the ink-on-paper design rules.
 
 ## Local Development
 

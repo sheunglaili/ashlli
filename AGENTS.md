@@ -107,7 +107,7 @@ When adding a new component to ashlli/ui, complete all of the steps below.
 - Use `export default` for the component
 - All internal imports use flat `./filename` (e.g. `import { X } from './icons'`)
 - No external npm dependencies beyond React — if a library is needed, reconsider
-- Use native Tailwind utilities from the `@theme` tokens: `bg-paper`, `bg-ink`, `text-sm`, `text-xs`, `rounded-card`, `space-sm`, `border-rule`, etc.
+- Use native Tailwind utilities from the `@theme` tokens: `bg-paper`, `bg-ink`, `text-sm`, `text-xs`, `rounded-card`, `border-rule`, etc. Spacing uses Tailwind's numeric scale (`gap-4`, `px-6`, `space-y-4`) — never `gap-sm`/`--spacing-*` utility names.
 - Hardcoded colors (`#000`, `oklch(...)`) are forbidden — use token utilities
 - Dark mode is automatic via the `.dark` class — no `dark:` variant classes needed
 
@@ -166,6 +166,16 @@ Keep alphabetical order by `name` in the items array. The `ashlli` style item (t
 - Visit the docs page and confirm light + dark mode render correctly
 - Validate the registry: `npx shadcn@latest registry validate sheunglaili/ashlli`
 - Test install from a fresh project: `npx shadcn@latest add sheunglaili/ashlli/<name>`
+
+## Agent skill
+
+ashlli/ui ships an installable agent skill at `skills/ashlli/` (Agent Skills format). It teaches agents how to install components, use the design tokens, and follow the design rules. Install with:
+
+```bash
+npx skills add sheunglaili/ashlli --skill ashlli
+```
+
+When adding or changing components, keep `skills/ashlli/references/components.md` in sync (import paths, key props, examples).
 
 ## User installation
 

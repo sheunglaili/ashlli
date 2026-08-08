@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "ashlli/ui",
+      "description": "Skills for building interfaces with the ashlli/ui monospaced ink-on-paper design system.",
+      "skills": ["ashlli"]
+    }
+  ]
+}

@@ -12,7 +12,7 @@ export const Route = createFileRoute('/docs/components/code-pill')({
 
 function CodePillDocPage() {
   const codeSnippet = `<div className="flex flex-col items-center gap-3">
-  <CodePill command="npx ashlli-ui add button" label="NPX" />
+  <CodePill command="npx shadcn@latest add sheunglaili/ashlli/button" label="NPX" />
   <CodePill command="git clone https://github.com/sheunglaili/ashlli.git" label="GIT" />
 </div>`
 
@@ -32,7 +32,7 @@ function CodePillDocPage() {
         <section id="preview">
           <ComponentPreview title="Command Code Pill" code={codeSnippet}>
             <div className="w-full flex flex-col gap-3 items-center">
-              <CodePill command="npx ashlli-ui add button" label="NPX" />
+              <CodePill command="npx shadcn@latest add sheunglaili/ashlli/button" label="NPX" />
               <CodePill command="git clone https://github.com/sheunglaili/ashlli.git" label="GIT" />
             </div>
           </ComponentPreview>
