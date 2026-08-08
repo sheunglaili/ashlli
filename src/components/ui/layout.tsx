@@ -12,13 +12,13 @@ type LayoutProps = React.HTMLAttributes<HTMLElement> & {
 type Gap = '2xs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 
 const gapClass: Record<Gap, string> = {
-  '2xs': 'gap-2xs',
-  xs: 'gap-xs',
-  sm: 'gap-sm',
-  md: 'gap-md',
-  lg: 'gap-lg',
-  xl: 'gap-xl',
-  '2xl': 'gap-2xl',
+  '2xs': 'gap-2',
+  xs: 'gap-3',
+  sm: 'gap-4',
+  md: 'gap-6',
+  lg: 'gap-10',
+  xl: 'gap-14',
+  '2xl': 'gap-20',
 }
 
 export interface ContainerProps extends LayoutProps {
@@ -32,7 +32,7 @@ export function Container({ as: Tag = 'div', size = 'content', className = '', .
     wide: 'max-w-6xl',
   }[size]
 
-  return <Tag className={`mx-auto w-full min-w-0 px-md ${sizeClass} ${className}`} {...props} />
+  return <Tag className={`mx-auto w-full min-w-0 px-6 ${sizeClass} ${className}`} {...props} />
 }
 
 export interface StackProps extends LayoutProps {
@@ -76,5 +76,5 @@ export function Grid({ as: Tag = 'div', columns = 2, gap = 'md', className = '',
 export type SectionProps = LayoutProps
 
 export function Section({ as: Tag = 'section', className = '', ...props }: SectionProps) {
-  return <Tag className={`border-b border-rule bg-paper py-2xl sm:py-3xl ${className}`} {...props} />
+  return <Tag className={`border-b border-rule bg-paper py-20 sm:py-24 ${className}`} {...props} />
 }

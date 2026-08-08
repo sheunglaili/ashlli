@@ -57,21 +57,23 @@
           "text-base-plus": "0.95rem",
           "text-lg": "1.05rem",
           "text-xl": "1.3rem",
-          "text-display": "2.25rem",
-          "space-3xs": "0.25rem",
-          "space-2xs": "0.5rem",
-          "space-xs": "0.75rem",
-          "space-sm": "1rem",
-          "space-md": "1.5rem",
-          "space-lg": "2.5rem",
-          "space-xl": "3.5rem",
-          "space-2xl": "5rem",
-          "space-3xl": "6rem"
+          "text-display": "2.25rem"
         }
       },
       "css": {
         "@import url(\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap\")": {},
-        "@custom-variant dark (&:where(.dark, .dark *))": {}
+        "@custom-variant dark (&:where(.dark, .dark *))": {},
+        ":root": {
+          "--spacing-3xs": "0.25rem",
+          "--spacing-2xs": "0.5rem",
+          "--spacing-xs": "0.75rem",
+          "--spacing-sm": "1rem",
+          "--spacing-md": "1.5rem",
+          "--spacing-lg": "2.5rem",
+          "--spacing-xl": "3.5rem",
+          "--spacing-2xl": "5rem",
+          "--spacing-3xl": "6rem"
+        }
       },
       "files": []
     },

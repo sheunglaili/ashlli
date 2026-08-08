@@ -34,10 +34,12 @@ Locked design system for ashlli/ui. Its visual DNA was studied from the jcode pu
   --font-body:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Spacing Scale (4-pt grid) */
-  --space-3xs: 0.25rem; --space-2xs: 0.5rem; --space-xs: 0.75rem;
-  --space-sm: 1rem;     --space-md: 1.5rem;   --space-lg: 2.5rem;
-  --space-xl: 3.5rem;   --space-2xl: 5rem;    --space-3xl: 6rem;
+  /* Spacing Scale (4-pt grid) — plain CSS vars for custom CSS.
+     Utilities use Tailwind's built-in numeric scale (3xs→1 … 3xl→24).
+     Do NOT map these to --spacing-* in @theme: it collides with max-w-*. */
+  --spacing-3xs: 0.25rem; --spacing-2xs: 0.5rem; --spacing-xs: 0.75rem;
+  --spacing-sm: 1rem;     --spacing-md: 1.5rem;   --spacing-lg: 2.5rem;
+  --spacing-xl: 3.5rem;   --spacing-2xl: 5rem;    --spacing-3xl: 6rem;
 
   /* Typography Scale */
   --text-xs: 0.72rem;   --text-sm: 0.85rem;   --text-base: 0.9rem;

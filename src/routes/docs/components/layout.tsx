@@ -11,7 +11,7 @@ export const Route = createFileRoute('/docs/components/layout')({
 })
 
 function LayoutDocPage() {
-  const primitivesCode = `<Container size="reading" className="border border-rule p-md">
+  const primitivesCode = `<Container size="reading" className="border border-rule p-6">
   <Stack gap="md">
     <Text size="caption" tone="muted">STACK · VERTICAL RHYTHM</Text>
     <Cluster gap="xs">
@@ -25,7 +25,7 @@ function LayoutDocPage() {
     </Grid>
   </Stack>
 </Container>`
-  const sectionCode = `<Section className="border border-rule px-md py-xl sm:py-xl">
+  const sectionCode = `<Section className="border border-rule px-6 py-14 sm:py-14">
   <Text size="small" tone="muted">
     Use <code>Section</code> to establish a deliberate break between major page ideas.
   </Text>
@@ -45,7 +45,7 @@ function LayoutDocPage() {
         <section id="primitives" className="docs-section">
           <Heading as="h2" size="section">Layout primitives</Heading>
           <ComponentPreview title="Stack, cluster, and grid" code={primitivesCode}>
-            <Container size="reading" className="border border-rule p-md">
+            <Container size="reading" className="border border-rule p-6">
               <Stack gap="md">
                 <Text size="caption" tone="muted">STACK · VERTICAL RHYTHM</Text>
                 <Cluster gap="xs">
@@ -65,7 +65,7 @@ function LayoutDocPage() {
         <section id="section" className="docs-section">
           <Heading as="h2" size="section">Section cadence</Heading>
           <ComponentPreview title="Section" code={sectionCode}>
-            <Section className="border border-rule px-md py-xl sm:py-xl">
+            <Section className="border border-rule px-6 py-14 sm:py-14">
               <Text size="small" tone="muted">Use <code>Section</code> to establish a deliberate break between major page ideas.</Text>
             </Section>
           </ComponentPreview>

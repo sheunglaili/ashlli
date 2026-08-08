@@ -20,6 +20,22 @@
   --color-warning: oklch(65% 0.18 75);
   --color-error: oklch(55% 0.22 25);
   --color-info: oklch(55% 0.18 240);
+
+  /* Spacing scale (4-pt grid) — plain CSS variables for custom CSS.
+     Utilities use Tailwind's built-in numeric spacing instead, which maps
+     one-to-one: 3xs→1, 2xs→2, xs→3, sm→4, md→6, lg→10, xl→14, 2xl→20, 3xl→24.
+     NOTE: never declare these as --spacing-* in @theme — Tailwind resolves
+     max-w-* against both the container and spacing namespaces, so e.g.
+     --spacing-3xl would break max-w-3xl. */
+  --spacing-3xs: 0.25rem;
+  --spacing-2xs: 0.5rem;
+  --spacing-xs: 0.75rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2.5rem;
+  --spacing-xl: 3.5rem;
+  --spacing-2xl: 5rem;
+  --spacing-3xl: 6rem;
 }
 
 /* ─── Dark mode ─── */
@@ -78,17 +94,6 @@
   --text-lg: 1.05rem;
   --text-xl: 1.3rem;
   --text-display: 2.25rem;
-
-  /* Spacing */
-  --space-3xs: 0.25rem;
-  --space-2xs: 0.5rem;
-  --space-xs: 0.75rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 2.5rem;
-  --space-xl: 3.5rem;
-  --space-2xl: 5rem;
-  --space-3xl: 6rem;
 }
 
 /* ─── Base styles ─── */
@@ -125,7 +130,7 @@ body {
   max-width: 82rem;
   min-height: calc(100vh - 3.5rem);
   margin: 0 auto;
-  padding: 0 var(--space-md);
+  padding: 0 var(--spacing-md);
 }
 
 .docs-sidebar {
@@ -135,11 +140,11 @@ body {
   max-height: calc(100vh - 3.5rem);
   overflow-y: auto;
   border-right: 1px solid var(--color-rule);
-  padding: var(--space-xl) var(--space-lg) var(--space-xl) 0;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-xl) 0;
 }
 
-.docs-sidebar__nav { display: grid; gap: var(--space-lg); }
-.docs-sidebar__group { display: grid; gap: var(--space-2xs); }
+.docs-sidebar__nav { display: grid; gap: var(--spacing-lg); }
+.docs-sidebar__group { display: grid; gap: var(--spacing-2xs); }
 .docs-sidebar__title, .docs-toc__title, .docs-kicker {
   margin: 0;
   color: var(--color-ink-2);
@@ -160,28 +165,28 @@ body {
 .docs-sidebar__link:hover, .docs-sidebar__link.active { color: var(--color-ink); }
 .docs-sidebar__link.active { font-weight: 650; }
 
-.docs-main { min-width: 0; padding: var(--space-xl) 0 var(--space-3xl) var(--space-xl); }
-.docs-article-layout { display: flex; gap: var(--space-xl); }
-.docs-article { width: min(100%, 43rem); min-width: 0; display: grid; gap: var(--space-2xl); }
-.docs-page-title { margin: var(--space-xs) 0 0; font-size: clamp(1.8rem, 3.5vw, var(--text-display)); line-height: 1.08; letter-spacing: -0.06em; overflow-wrap: anywhere; }
-.docs-intro { max-width: 39rem; margin: var(--space-sm) 0 0; color: var(--color-ink-2); font-size: var(--text-base); line-height: 1.75; }
-.docs-section { display: grid; gap: var(--space-sm); scroll-margin-top: 5rem; }
+.docs-main { min-width: 0; padding: var(--spacing-xl) 0 var(--spacing-3xl) var(--spacing-xl); }
+.docs-article-layout { display: flex; gap: var(--spacing-xl); }
+.docs-article { width: min(100%, 43rem); min-width: 0; display: grid; gap: var(--spacing-2xl); }
+.docs-page-title { margin: var(--spacing-xs) 0 0; font-size: clamp(1.8rem, 3.5vw, var(--text-display)); line-height: 1.08; letter-spacing: -0.06em; overflow-wrap: anywhere; }
+.docs-intro { max-width: 39rem; margin: var(--spacing-sm) 0 0; color: var(--color-ink-2); font-size: var(--text-base); line-height: 1.75; }
+.docs-section { display: grid; gap: var(--spacing-sm); scroll-margin-top: 5rem; }
 .docs-section h2 { margin: 0; color: var(--color-ink); font-size: var(--text-lg); font-weight: 650; letter-spacing: -0.03em; line-height: 1.25; }
 .docs-section > p { margin: 0; color: var(--color-ink-2); font-size: var(--text-base); line-height: 1.75; }
-.docs-toc { position: sticky; top: 3.5rem; align-self: start; width: 10.5rem; flex: 0 0 10.5rem; max-height: calc(100vh - 3.5rem); overflow-y: auto; border-left: 1px solid var(--color-rule); padding: var(--space-xs) 0 var(--space-xs) var(--space-lg); }
-.docs-toc__links { display: grid; gap: var(--space-2xs); margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
-.docs-toc__item--nested { padding-left: var(--space-sm); }
+.docs-toc { position: sticky; top: 3.5rem; align-self: start; width: 10.5rem; flex: 0 0 10.5rem; max-height: calc(100vh - 3.5rem); overflow-y: auto; border-left: 1px solid var(--color-rule); padding: var(--spacing-xs) 0 var(--spacing-xs) var(--spacing-lg); }
+.docs-toc__links { display: grid; gap: var(--spacing-2xs); margin: var(--spacing-sm) 0 0; padding: 0; list-style: none; }
+.docs-toc__item--nested { padding-left: var(--spacing-sm); }
 .docs-toc__link { color: var(--color-ink-2); font-size: var(--text-xs); line-height: 1.4; text-decoration: none; transition: color var(--dur-fast, 180ms) var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1)); }
 .docs-toc__link:hover { color: var(--color-ink); }
 
 @media (max-width: 63.99rem) {
-  .docs-shell { display: block; padding: 0 var(--space-md); }
+  .docs-shell { display: block; padding: 0 var(--spacing-md); }
   .docs-main { padding-left: 0; }
 }
 
 @media (max-width: 47.99rem) {
-  .docs-main { padding-top: var(--space-lg); }
-  .docs-article { gap: var(--space-xl); }
+  .docs-main { padding-top: var(--spacing-lg); }
+  .docs-article { gap: var(--spacing-xl); }
 }
 
 /* ─── Scrollbar ─── */
