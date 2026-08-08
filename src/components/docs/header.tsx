@@ -31,7 +31,7 @@ export const Header: React.FC = () => {
             Components
           </Link>
           <a
-            href="https://github.com"
+            href="https://github.com/sheunglaili/ashlli"
             target="_blank"
             rel="noreferrer"
             className="hover:text-ink no-underline"
