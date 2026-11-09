@@ -116,7 +116,16 @@
       },
       "css": {
         "@import \"@fontsource-variable/jetbrains-mono\"": {},
+        "@import \"shadcn/tailwind.css\"": {},
         "@custom-variant dark (&:where(.dark, .dark *))": {},
+        "@layer base": {
+          "*": {
+            "@apply border-border outline-ring/50": {}
+          },
+          "body": {
+            "@apply bg-background text-foreground": {}
+          }
+        },
         ":root": {
           "--spacing-3xs": "0.25rem",
           "--spacing-2xs": "0.5rem",
@@ -129,7 +138,10 @@
           "--spacing-3xl": "6rem"
         }
       },
-      "files": []
+      "files": [],
+      "devDependencies": [
+        "shadcn"
+      ]
     }
   ]
 }
