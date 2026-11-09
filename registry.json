@@ -8,7 +8,9 @@
       "type": "registry:style",
       "title": "Ashlli Style",
       "description": "Monospaced ink-on-paper design system. Installs all theme tokens, fonts, and Tailwind v4 configuration.",
-      "dependencies": [],
+      "dependencies": [
+        "@fontsource-variable/jetbrains-mono"
+      ],
       "registryDependencies": [],
       "cssVars": {
         "light": {
@@ -86,9 +88,9 @@
           "chart-5": "oklch(30% 0 0)"
         },
         "theme": {
-          "font-display": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
-          "font-body": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
-          "font-mono": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-display": "\"JetBrains Mono Variable\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-body": "\"JetBrains Mono Variable\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-mono": "\"JetBrains Mono Variable\", ui-monospace, SFMono-Regular, Menlo, monospace",
           "radius-card": "8px",
           "radius-pill": "999px",
           "radius-input": "8px",
@@ -104,7 +106,7 @@
           "text-lg": "1.05rem",
           "text-xl": "1.3rem",
           "text-display": "2.25rem",
-          "font-sans": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "font-sans": "\"JetBrains Mono Variable\", ui-monospace, SFMono-Regular, Menlo, monospace",
           "radius": "8px",
           "radius-sm": "4px",
           "radius-md": "6px",
@@ -113,7 +115,7 @@
         }
       },
       "css": {
-        "@import url(\"https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap\")": {},
+        "@import \"@fontsource-variable/jetbrains-mono\"": {},
         "@custom-variant dark (&:where(.dark, .dark *))": {},
         ":root": {
           "--spacing-3xs": "0.25rem",
