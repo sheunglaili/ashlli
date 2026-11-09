@@ -1,58 +1,56 @@
-import React from 'react'
+import * as React from "react"
+import { cn } from "cn"
+import { Slider as SliderPrimitive } from "radix-ui"
 
-export interface SliderProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'onChange' | 'value'> {
-  value?: number
-  label?: string
-  showValue?: boolean
-  valueLabel?: (value: number) => string
-  onChange?: (value: number) => void
-}
-
-export const Slider: React.FC<SliderProps> = ({
-  label,
-  showValue = false,
-  valueLabel,
-  onChange,
+function Slider({
+  className,
+  defaultValue,
+  value,
   min = 0,
   max = 100,
-  step = 1,
-  value,
-  className = '',
   ...props
-}) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    onChange?.(Number(e.target.value))
-  }
-
-  const currentValue = value ?? 0
-  const displayValue = valueLabel ? valueLabel(currentValue) : `${currentValue}`
+}: React.ComponentProps<typeof SliderPrimitive.Root>) {
+  const _values = React.useMemo(
+    () =>
+      Array.isArray(value)
+        ? value
+        : Array.isArray(defaultValue)
+          ? defaultValue
+          : [min, max],
+    [value, defaultValue, min, max]
+  )
 
   return (
-    <div className={`flex flex-col gap-1.5 font-mono text-sm-minus w-full ${className}`}>
-      {(label || showValue) && (
-        <div className="flex items-center justify-between">
-          {label && (
-            <label className="font-semibold text-sm-minus text-ink uppercase tracking-wider">
-              {label}
-            </label>
-          )}
-          {showValue && (
-            <span className="text-xs-plus font-mono font-semibold text-ink">
-              {displayValue}
-            </span>
-          )}
-        </div>
+    <SliderPrimitive.Root
+      data-slot="slider"
+      defaultValue={defaultValue}
+      value={value}
+      min={min}
+      max={max}
+      className={cn(
+        "relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col",
+        className
       )}
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={handleChange}
-        className={`slider w-full ${className}`}
-        {...props}
-      />
-    </div>
+      {...props}
+    >
+      <SliderPrimitive.Track
+        data-slot="slider-track"
+        className="relative grow overflow-hidden rounded-full bg-muted data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+      >
+        <SliderPrimitive.Range
+          data-slot="slider-range"
+          className="absolute bg-primary select-none data-horizontal:h-full data-vertical:w-full"
+        />
+      </SliderPrimitive.Track>
+      {Array.from({ length: _values.length }, (_, index) => (
+        <SliderPrimitive.Thumb
+          data-slot="slider-thumb"
+          key={index}
+          className="relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
+        />
+      ))}
+    </SliderPrimitive.Root>
   )
 }
+
+export { Slider }
