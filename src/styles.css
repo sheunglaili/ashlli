@@ -1,184 +1,16 @@
 /* Hallmark · macrostructure: Long Document · tone: quiet technical reference · anchor hue: neutral ink
- * pre-emit critique: P5 H4 E4 S4 R5 V4 · contrast: pass (40–41) · mobile: pass (49, 51, 56) */
-@import "@fontsource-variable/jetbrains-mono";
+ * pre-emit critique: P5 H4 E4 S4 R5 V4 · contrast: pass (40–41) · mobile: pass (49, 51, 56)
+ *
+ * TOKENS ARE GENERATED FROM registry.json — after changing registry.json, run
+ * `npx shadcn@latest add sheunglaili/ashlli/style` to regenerate the :root / .dark /
+ * @theme blocks. The rules at the bottom of this file are site-specific; don't fold
+ * token values into them. */
+
 @import "tailwindcss";
+@import "@fontsource-variable/jetbrains-mono";
+@import "shadcn/tailwind.css";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
-/* ─── Light mode (default) ─── */
-:root {
-  --color-paper: oklch(100% 0 0);
-  --color-paper-2: oklch(96.5% 0 0);
-  --color-ink: oklch(15% 0 0);
-  --color-ink-2: oklch(45% 0 0);
-  --color-rule: oklch(83% 0 0);
-  --color-accent: oklch(15% 0 0);
-  --color-accent-ink: oklch(100% 0 0);
-  --color-focus: oklch(15% 0 0);
-
-  --color-success: oklch(55% 0.18 145);
-  --color-warning: oklch(65% 0.18 75);
-  --color-error: oklch(55% 0.22 25);
-  --color-info: oklch(55% 0.18 240);
-
-  /* Standard shadcn vocabulary — same values as the registry style item.
-     Keep in sync with registry.json cssVars when either changes. */
-  --background: oklch(100% 0 0);
-  --foreground: oklch(15% 0 0);
-  --card: oklch(100% 0 0);
-  --card-foreground: oklch(15% 0 0);
-  --popover: oklch(96.5% 0 0);
-  --popover-foreground: oklch(15% 0 0);
-  --primary: oklch(15% 0 0);
-  --primary-foreground: oklch(100% 0 0);
-  --secondary: oklch(96.5% 0 0);
-  --secondary-foreground: oklch(15% 0 0);
-  --muted: oklch(96.5% 0 0);
-  --muted-foreground: oklch(45% 0 0);
-  --accent-foreground: oklch(100% 0 0);
-  --destructive: oklch(55% 0.22 25);
-  --destructive-foreground: oklch(100% 0 0);
-  --border: oklch(83% 0 0);
-  --input: oklch(83% 0 0);
-  --ring: oklch(15% 0 0);
-  --chart-1: oklch(15% 0 0);
-  --chart-2: oklch(30% 0 0);
-  --chart-3: oklch(45% 0 0);
-  --chart-4: oklch(65% 0 0);
-  --chart-5: oklch(83% 0 0);
-
-  /* Spacing scale (4-pt grid) — plain CSS variables for custom CSS.
-     Utilities use Tailwind's built-in numeric spacing instead, which maps
-     one-to-one: 3xs→1, 2xs→2, xs→3, sm→4, md→6, lg→10, xl→14, 2xl→20, 3xl→24.
-     NOTE: never declare these as --spacing-* in @theme — Tailwind resolves
-     max-w-* against both the container and spacing namespaces, so e.g.
-     --spacing-3xl would break max-w-3xl. */
-  --spacing-3xs: 0.25rem;
-  --spacing-2xs: 0.5rem;
-  --spacing-xs: 0.75rem;
-  --spacing-sm: 1rem;
-  --spacing-md: 1.5rem;
-  --spacing-lg: 2.5rem;
-  --spacing-xl: 3.5rem;
-  --spacing-2xl: 5rem;
-  --spacing-3xl: 6rem;
-}
-
-/* ─── Dark mode ─── */
-.dark {
-  --color-paper: oklch(12% 0 0);
-  --color-paper-2: oklch(18% 0 0);
-  --color-ink: oklch(95% 0 0);
-  --color-ink-2: oklch(68% 0 0);
-  --color-rule: oklch(30% 0 0);
-  --color-accent: oklch(95% 0 0);
-  --color-accent-ink: oklch(12% 0 0);
-  --color-focus: oklch(95% 0 0);
-
-  --color-success: oklch(70% 0.18 145);
-  --color-warning: oklch(75% 0.18 75);
-  --color-error: oklch(70% 0.22 25);
-  --color-info: oklch(70% 0.18 240);
-
-  /* Standard shadcn vocabulary — dark mirrors the registry style item. */
-  --background: oklch(12% 0 0);
-  --foreground: oklch(95% 0 0);
-  --card: oklch(12% 0 0);
-  --card-foreground: oklch(95% 0 0);
-  --popover: oklch(18% 0 0);
-  --popover-foreground: oklch(95% 0 0);
-  --primary: oklch(95% 0 0);
-  --primary-foreground: oklch(12% 0 0);
-  --secondary: oklch(18% 0 0);
-  --secondary-foreground: oklch(95% 0 0);
-  --muted: oklch(18% 0 0);
-  --muted-foreground: oklch(68% 0 0);
-  --accent-foreground: oklch(12% 0 0);
-  --destructive: oklch(70% 0.22 25);
-  --destructive-foreground: oklch(12% 0 0);
-  --border: oklch(30% 0 0);
-  --input: oklch(30% 0 0);
-  --ring: oklch(95% 0 0);
-  --chart-1: oklch(95% 0 0);
-  --chart-2: oklch(75% 0 0);
-  --chart-3: oklch(55% 0 0);
-  --chart-4: oklch(40% 0 0);
-  --chart-5: oklch(30% 0 0);
-}
-
-/* ─── Tailwind v4 theme mapping ─── */
-@theme {
-  /* Colors (mapped from :root / .dark) */
-  --color-paper: var(--color-paper);
-  --color-paper-2: var(--color-paper-2);
-  --color-ink: var(--color-ink);
-  --color-ink-2: var(--color-ink-2);
-  --color-rule: var(--color-rule);
-  --color-accent: var(--color-accent);
-  --color-accent-ink: var(--color-accent-ink);
-  --color-focus: var(--color-focus);
-  --color-success: var(--color-success);
-  --color-warning: var(--color-warning);
-  --color-error: var(--color-error);
-  --color-info: var(--color-info);
-
-  /* Standard shadcn vocabulary (indirect, follows shadcn's :root vars) */
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-
-  /* Fonts */
-  --font-display: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-body: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  /* Border radii */
-  --radius-card: 8px;
-  --radius-pill: 999px;
-  --radius-input: 8px;
-
-  /* Standard radii — stock shadcn rounded-* scale (lg = ashlli card radius) */
-  --radius: 8px;
-  --radius-sm: 4px;
-  --radius-md: 6px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-
-  /* Font sizes — full scale */
-  --text-2xs: 0.65rem;
-  --text-2xs-plus: 0.68rem;
-  --text-xs: 0.72rem;
-  --text-xs-plus: 0.75rem;
-  --text-sm-minus: 0.78rem;
-  --text-sm: 0.85rem;
-  --text-sm-plus: 0.88rem;
-  --text-base: 0.9rem;
-  --text-base-plus: 0.95rem;
-  --text-lg: 1.05rem;
-  --text-xl: 1.3rem;
-  --text-display: 2.25rem;
-}
+@custom-variant dark (&:is(.dark *));
 
 /* ─── Base styles ─── */
 * {
@@ -189,7 +21,6 @@ html,
 body,
 #app {
   min-height: 100%;
-  font-family: var(--font-body);
   background-color: var(--color-paper);
   color: var(--color-ink);
   -webkit-font-smoothing: antialiased;
@@ -227,4 +58,165 @@ body {
 *:focus-visible {
   outline: 2px solid var(--color-focus);
   outline-offset: 2px;
+}
+
+@theme inline {
+  --font-display: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-body: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius-card: 8px;
+  --radius-pill: 999px;
+  --radius-input: 8px;
+  --text-2xs: 0.65rem;
+  --text-2xs-plus: 0.68rem;
+  --text-xs: 0.72rem;
+  --text-xs-plus: 0.75rem;
+  --text-sm-minus: 0.78rem;
+  --text-sm: 0.85rem;
+  --text-sm-plus: 0.88rem;
+  --text-base: 0.9rem;
+  --text-base-plus: 0.95rem;
+  --text-lg: 1.05rem;
+  --text-xl: 1.3rem;
+  --text-display: 2.25rem;
+  --font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --color-info: var(--info);
+  --color-error: var(--error);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-focus: var(--focus);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent: var(--accent);
+  --color-rule: var(--rule);
+  --color-ink-2: var(--ink-2);
+  --color-ink: var(--ink);
+  --color-paper-2: var(--paper-2);
+  --color-paper: var(--paper);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --paper: oklch(100% 0 0);
+  --paper-2: oklch(96.5% 0 0);
+  --ink: oklch(15% 0 0);
+  --ink-2: oklch(45% 0 0);
+  --rule: oklch(83% 0 0);
+  --accent: oklch(15% 0 0);
+  --accent-ink: oklch(100% 0 0);
+  --focus: oklch(15% 0 0);
+  --success: oklch(55% 0.18 145);
+  --warning: oklch(65% 0.18 75);
+  --error: oklch(55% 0.22 25);
+  --info: oklch(55% 0.18 240);
+  --background: oklch(100% 0 0);
+  --foreground: oklch(15% 0 0);
+  --card: oklch(100% 0 0);
+  --card-foreground: oklch(15% 0 0);
+  --popover: oklch(96.5% 0 0);
+  --popover-foreground: oklch(15% 0 0);
+  --primary: oklch(15% 0 0);
+  --primary-foreground: oklch(100% 0 0);
+  --secondary: oklch(96.5% 0 0);
+  --secondary-foreground: oklch(15% 0 0);
+  --muted: oklch(96.5% 0 0);
+  --muted-foreground: oklch(45% 0 0);
+  --accent-foreground: oklch(100% 0 0);
+  --destructive: oklch(55% 0.22 25);
+  --destructive-foreground: oklch(100% 0 0);
+  --border: oklch(83% 0 0);
+  --input: oklch(83% 0 0);
+  --ring: oklch(15% 0 0);
+  --chart-1: oklch(15% 0 0);
+  --chart-2: oklch(30% 0 0);
+  --chart-3: oklch(45% 0 0);
+  --chart-4: oklch(65% 0 0);
+  --chart-5: oklch(83% 0 0);
+    --spacing-3xs: 0.25rem;
+    --spacing-2xs: 0.5rem;
+    --spacing-xs: 0.75rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2.5rem;
+    --spacing-xl: 3.5rem;
+    --spacing-2xl: 5rem;
+    --spacing-3xl: 6rem;
+}
+
+.dark {
+  --paper: oklch(12% 0 0);
+  --paper-2: oklch(18% 0 0);
+  --ink: oklch(95% 0 0);
+  --ink-2: oklch(68% 0 0);
+  --rule: oklch(30% 0 0);
+  --accent: oklch(95% 0 0);
+  --accent-ink: oklch(12% 0 0);
+  --focus: oklch(95% 0 0);
+  --success: oklch(70% 0.18 145);
+  --warning: oklch(75% 0.18 75);
+  --error: oklch(70% 0.22 25);
+  --info: oklch(70% 0.18 240);
+  --background: oklch(12% 0 0);
+  --foreground: oklch(95% 0 0);
+  --card: oklch(12% 0 0);
+  --card-foreground: oklch(95% 0 0);
+  --popover: oklch(18% 0 0);
+  --popover-foreground: oklch(95% 0 0);
+  --primary: oklch(95% 0 0);
+  --primary-foreground: oklch(12% 0 0);
+  --secondary: oklch(18% 0 0);
+  --secondary-foreground: oklch(95% 0 0);
+  --muted: oklch(18% 0 0);
+  --muted-foreground: oklch(68% 0 0);
+  --accent-foreground: oklch(12% 0 0);
+  --destructive: oklch(70% 0.22 25);
+  --destructive-foreground: oklch(12% 0 0);
+  --border: oklch(30% 0 0);
+  --input: oklch(30% 0 0);
+  --ring: oklch(95% 0 0);
+  --chart-1: oklch(95% 0 0);
+  --chart-2: oklch(75% 0 0);
+  --chart-3: oklch(55% 0 0);
+  --chart-4: oklch(40% 0 0);
+  --chart-5: oklch(30% 0 0);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

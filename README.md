@@ -75,7 +75,7 @@ npx shadcn@latest registry validate sheunglaili/ashlli   # 1 item, valid
 
 ## Registry Structure
 
-- `registry.json` — the registry manifest at the repo root, read by the shadcn CLI; ships exactly one item (`style`)
-- `src/styles.css` — the site's token sheet; always keep in sync with `registry.json` cssVars
+- `registry.json` — the registry manifest at the repo root, read by the shadcn CLI; ships exactly one item (`style`), which also carries the `shadcn/tailwind.css` state-variant bridge
+- `src/styles.css` — the site's stylesheet; token blocks are GENERATED from `registry.json` via `npx shadcn@latest add sheunglaili/ashlli/style` (this site installs its own preset)
 - `src/components/ui/*.tsx` — stock shadcn components vendored for the showcase site only (not part of the registry item)
 - `src/routes/index.tsx` — the one-page showcase

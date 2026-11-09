@@ -104,16 +104,26 @@ token vocabularies, fonts, and Tailwind v4 configuration. The `src/components/ui
 files are STOCK shadcn components vendored into this repo only to run the showcase
 site; they are NOT part of the registry item.
 
-## Token maintenance — two synced places
+## Token maintenance — one source of truth
 
-Tokens are maintained in TWO places that must always change together:
+Tokens live in **`registry.json`** (`items[0].cssVars`: `light`, `dark`, `theme`) as the
+single source of truth. The showcase site's `src/styles.css` token blocks (`:root`,
+`.dark`, `@theme inline`) are GENERATED from it — do not hand-edit them.
 
-1. `registry.json` → `items[0].cssVars` (`light`, `dark`, `theme`) — what consumers install
-2. `src/styles.css` — `:root` / `.dark` raw variables + `@theme` mapping — what the
-   showcase site uses
+To apply a token change to the site:
 
-When changing a token value, update both, then update
-`skills/ashlli/references/tokens.md` so the skill stays accurate.
+1. Edit `registry.json` cssVars
+2. Commit + push to `master` (the CLI reads the pushed state)
+3. Run `npx shadcn@latest add sheunglaili/ashlli/style` — the CLI rewrites the token
+   blocks in `src/styles.css`, keeping site-specific rules intact
+4. Update `skills/ashlli/references/tokens.md` so the skill stays accurate
+5. `npm run build` and check light + dark rendering
+
+The style item imports `shadcn/tailwind.css` (installed as a dev dependency); it bridges
+Radix's runtime attributes (`data-state="checked"`, `data-orientation="horizontal"`, …)
+to the stock recipes' shorthand variants (`data-checked:`, `data-active:`,
+`data-horizontal:`, …). Without it, stock components lose their state styling —
+invisible switch tracks, collapsed slider tracks, unstyled active tabs.
 
 Vocabulary contract:
 
