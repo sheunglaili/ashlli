@@ -4,7 +4,7 @@
   "groupings": [
     {
       "title": "ashlli/ui",
-      "description": "Skills for building interfaces with the ashlli/ui monospaced ink-on-paper design system.",
+      "description": "Skills for applying the ashlli ink-on-paper style preset to shadcn projects.",
       "skills": ["ashlli"]
     }
   ]

@@ -96,129 +96,90 @@ tanstackIntent:
     for: "Programmatic route tree building as an alternative to filesystem conventions: rootRoute, index, route, layout, physical, defineVirtualSubtreeConfig. Use with TanStack Router plugin's virtualRouteConfig option."
 <!-- intent-skills:end -->
 
-# Adding New UI Components
+# Maintaining the ashlli style preset
 
-When adding a new component to ashlli/ui, complete all of the steps below.
+This repository is a **pure shadcn style preset** distributed as a GitHub registry.
+`registry.json` ships exactly one item — `style` (type `registry:style`) — carrying the
+token vocabularies, fonts, and Tailwind v4 configuration. The `src/components/ui/`
+files are STOCK shadcn components vendored into this repo only to run the showcase
+site; they are NOT part of the registry item.
 
-## 1. Create the component file
+## Token maintenance — two synced places
 
-- Place in `src/components/ui/<name>.tsx`
-- Export a named component + props interface (e.g. `export interface FooProps ...`)
-- Use `export default` for the component
-- All internal imports use flat `./filename` (e.g. `import { X } from './icons'`)
-- No external npm dependencies beyond React — if a library is needed, reconsider
-- Use native Tailwind utilities from the `@theme` tokens: `bg-paper`, `bg-ink`, `text-sm`, `text-xs`, `rounded-card`, `border-rule`, etc. Spacing uses Tailwind's numeric scale (`gap-4`, `px-6`, `space-y-4`) — never `gap-sm`/`--spacing-*` utility names.
-- Hardcoded colors (`#000`, `oklch(...)`) are forbidden — use token utilities
+Tokens are maintained in TWO places that must always change together:
+
+1. `registry.json` → `items[0].cssVars` (`light`, `dark`, `theme`) — what consumers install
+2. `src/styles.css` — `:root` / `.dark` raw variables + `@theme` mapping — what the
+   showcase site uses
+
+When changing a token value, update both, then update
+`skills/ashlli/references/tokens.md` so the skill stays accurate.
+
+Vocabulary contract:
+
+- The **ashlli vocabulary** (`paper`, `paper-2`, `ink`, `ink-2`, `rule`, `accent`,
+  `accent-ink`, `focus`, `success`, `warning`, `error`, `info`, `radius-card/pill/input`,
+  `text-*` scale) is the design source of truth. Do not change existing values casually.
+- The **standard shadcn vocabulary** (`background`, `foreground`, `card`, `popover`,
+  `primary`, `secondary`, `muted`, `accent-foreground`, `destructive`, `border`,
+  `input`, `ring`, `chart-1..5`, `radius-sm/md/lg/xl`, `font-sans`) must keep mirroring
+  ashlli values; it is what stock shadcn components read.
+- Site fonts are loaded via `@fontsource-variable/jetbrains-mono` (npm dependency), not a
+  Google Fonts URL — remote `@import` rules get ignored by browsers when they land below
+  inlined rules.
+
+## Component showcase page
+
+The site is a one-pager: `src/routes/index.tsx` showcases stock shadcn components
+styled by the tokens; `src/routes/__root.tsx` is the document shell. There are no other
+routes on purpose.
+
+When adjusting the showcase page:
+
+- Import components from `@/components/ui/*` (stock shadcn code, vendored via the
+  shadcn CLI with this repo's `components.json`)
+- Site utilities use the ashlli token utilities (`bg-paper`, `text-ink-2`, `border-rule`,
+  `text-sm`, `rounded-card`, etc.) and the standard vocabulary (`bg-background`,
+  `text-muted-foreground`) — both resolve to the same oklch values
+- Spacing uses Tailwind's numeric scale (`gap-4`, `px-6`, `space-y-4`) — never
+  `gap-sm`/`--spacing-*` utility names
+- Hardcoded colors (`#000`, `oklch(...)`) are forbidden in tsx files — use token utilities
 - Dark mode is automatic via the `.dark` class — no `dark:` variant classes needed
+- Adding MORE stock components for the showcase: `npx shadcn@latest add <component>`
+  from the default registry; keep vendored files as-installed (do not style-edit them)
 
-## 2. Register in the registry
+## Verify
 
-Edit `registry.json` (repo root) and add an entry to the `items` array. This repo is a **shadcn-compatible GitHub registry** — the `shadcn` CLI reads `registry.json` from the repo root.
+- `npx shadcn@latest registry validate sheunglaili/ashlli` — must pass with exactly 1 item
+- `npx shadcn@latest view sheunglaili/ashlli/style` — payload shows both vocabularies
+  and the fontsource dependency
+- `npm run build` — site build (client + ssr + prerender) must pass with no new errors
+- Visit the root page, confirm light + dark mode render correctly
+- Fresh-project smoke: `shadcn init` → `add sheunglaili/ashlli/style` → `add button`
+  renders styled
 
-```json
-{
-  "name": "my-component",
-  "type": "registry:ui",
-  "title": "My Component",
-  "description": "Short description.",
-  "files": [
-    {
-      "path": "src/components/ui/my-component.tsx",
-      "type": "registry:ui",
-      "target": "@ui/my-component.tsx"
-    }
-  ]
-}
-```
+## Registry verification references
 
-If the component imports from another ashlli component (e.g. `./icons`), add `registryDependencies` with the full GitHub address:
-
-```json
-{
-  "name": "my-component",
-  "type": "registry:ui",
-  "title": "My Component",
-  "description": "Short description.",
-  "registryDependencies": ["sheunglaili/ashlli/icons"],
-  "files": [
-    {
-      "path": "src/components/ui/my-component.tsx",
-      "type": "registry:ui",
-      "target": "@ui/my-component.tsx"
-    }
-  ]
-}
-```
-
-Keep alphabetical order by `name` in the items array. The `style` item (type `registry:style`) must remain first.
-
-## 3. Add a docs page
-
-- Create `src/routes/docs/components/<name>.tsx`
-- Use `createFileRoute('/docs/components/<name>')` from `@tanstack/react-start`
-- Import the component from `@/components/ui/<name>`
-- Include: page title (`docs-page-title`), description (`docs-intro`), a live demo section, and props table
-- Add a link in `src/components/docs/sidebar.tsx` under the Components group
-
-## 4. Verify
-
-- Run `npm run build` — must pass with no new errors
-- Visit the docs page and confirm light + dark mode render correctly
-- Validate the registry: `npx shadcn@latest registry validate sheunglaili/ashlli`
-- Test install from a fresh project: `npx shadcn@latest add sheunglaili/ashlli/<name>`
+- Old component install addresses (e.g. `sheunglaili/ashlli/button`) no longer resolve
+  on the default branch — components are gone from the catalog on purpose
+- The style install address is `sheunglaili/ashlli/style`
 
 ## Agent skill
 
-ashlli/ui ships an installable agent skill at `skills/ashlli/` (Agent Skills format). It teaches agents how to install components, use the design tokens, and follow the design rules. Install with:
+ashlli ships an installable agent skill at `skills/ashlli/` (Agent Skills format). It
+teaches agents how to install the style, use the token vocabularies, and follow the
+design rules. Install with:
 
 ```bash
 npx skills add sheunglaili/ashlli --skill ashlli
 ```
 
-When adding or changing components, keep `skills/ashlli/references/components.md` in sync (import paths, key props, examples).
+When changing tokens, keep `skills/ashlli/references/tokens.md` in sync (mapping table).
 
 ## User installation
 
-Users install ashlli components via the shadcn CLI:
+Users install the preset via the shadcn CLI:
 
 ```bash
-# Add the ashlli style (tokens, fonts, theme)
 npx shadcn@latest add sheunglaili/ashlli/style
-
-# Add individual components (dependencies auto-resolve)
-npx shadcn@latest add sheunglaili/ashlli/button
-npx shadcn@latest add sheunglaili/ashlli/toast  # auto-installs icons
 ```
-
-Or via namespace after setup:
-
-```bash
-npx shadcn@latest registry add @ashlli=https://ashlli.github.io/ashlli/r/{name}.json
-npx shadcn@latest add @ashlli/button
-```
-
-## Token reference
-
-Use these Tailwind utilities (mapped from `@theme` tokens in `styles.css`):
-
-| Token | Light | Dark | Utility |
-|---|---|---|---|
-| `--color-paper` | white | near-black | `bg-paper`, `text-paper` |
-| `--color-paper-2` | off-white | dark gray | `bg-paper-2`, `border-paper-2` |
-| `--color-ink` | near-black | near-white | `text-ink`, `bg-ink` |
-| `--color-ink-2` | mid-gray | mid-gray | `text-ink-2`, `bg-ink-2` |
-| `--color-rule` | light gray | dark gray | `border-rule` |
-| `--color-accent` | near-black | near-white | `bg-accent` |
-| `--color-accent-ink` | white | near-black | `text-accent-ink` |
-| `--color-focus` | near-black | near-white | `ring-focus` |
-| `--color-success` | green | bright green | `bg-success`, `text-success` |
-| `--color-warning` | amber | bright amber | `bg-warning`, `text-warning` |
-| `--color-error` | red | bright red | `bg-error`, `text-error`, `border-error` |
-| `--color-info` | blue | bright blue | `bg-info`, `text-info` |
-| `--radius-card` | 8px | — | `rounded-card` |
-| `--radius-pill` | 999px | — | `rounded-pill` |
-| `--radius-input` | 8px | — | `rounded-input` |
-| `--text-sm` | 0.85rem | — | `text-sm` |
-| `--text-xs` | 0.72rem | — | `text-xs` |
-| `--text-base` | 0.9rem | — | `text-base` |
-| `--text-lg` | 1.05rem | — | `text-lg` |

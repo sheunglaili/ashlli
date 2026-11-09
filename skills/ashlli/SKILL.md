@@ -1,40 +1,30 @@
----
-name: ashlli
-description: "Build interfaces with ashlli/ui — a monospaced ink-on-paper React design system distributed as a shadcn-compatible GitHub registry. Use when building new UI with ashlli/ui or installing ashlli components via the shadcn CLI."
----
+# Skill: ashlli
 
-# ashlli/ui
+# ashlli — style preset for shadcn
 
-[ashlli/ui](https://github.com/sheunglaili/ashlli) is a monospaced ink-on-paper design system for React, distributed as a [shadcn](https://ui.shadcn.com)-compatible GitHub registry. Every component is copied into your project and fully yours to customize — there is no lock-in.
+[ashlli](https://github.com/sheunglaili/ashlli) is a monospaced ink-on-paper **style preset** for [shadcn](https://ui.shadcn.com), distributed as a shadcn-compatible GitHub registry. It ships exactly one item — the `style` — which installs the token set, fonts, and Tailwind v4 configuration. Every stock shadcn component then renders in the ashlli look without any code changes; components are copied into your project and fully yours to customize.
 
-The system is deliberately stark and technical: **JetBrains Mono** everywhere, hairline `1px` rules, 8px card radii, 999px pill radii, and an OKLCH palette anchored on paper and ink. If a screen looks soft, rounded, or colorful, it is not following ashlli.
+The system is deliberately stark and technical: **JetBrains Mono Variable** everywhere, hairline `1px` rules, 8px card radii, 999px pill radii, and an OKLCH palette anchored on paper and ink. If a screen looks soft, rounded, or colorful, it is not following ashlli.
 
 ## Prerequisites
 
-- A React project with **Tailwind CSS v4**.
+- A React project with **Tailwind CSS v4**, initialized with the shadcn CLI (`npx shadcn@latest init`).
 - The [shadcn](https://ui.shadcn.com) CLI (invoked via `npx shadcn@latest`).
 
 ## Installing
 
-Run the CLI from the project root (where `package.json` lives). Install the ashlli **style** first, then any components — the CLI resolves component dependencies automatically:
+Run the CLI from the project root (where `package.json` lives). Install the style first, then add any components:
 
 ```bash
-# 1. The style: theme tokens, fonts, and Tailwind configuration
+# 1. The style: standard + ashlli token vocabularies, fonts, Tailwind v4 config
 npx shadcn@latest add sheunglaili/ashlli/style
 
-# 2. Any component by registry name
-npx shadcn@latest add sheunglaili/ashlli/button
-npx shadcn@latest add sheunglaili/ashlli/toast
+# 2. Any component straight from the default shadcn registry
+npx shadcn@latest add button
+npx shadcn@latest add dialog card ...
 ```
 
-You can also register a namespace once, then add by name:
-
-```bash
-npx shadcn@latest registry add @ashlli=https://ashlli.github.io/ashlli/r/{name}.json
-npx shadcn@latest add @ashlli/button
-```
-
-Components land in `@/components/ui/` (per your shadcn config). The `ashlli` style installs the token set as Tailwind v4 `@theme` variables in your `styles.css`, plus the JetBrains Mono font.
+Stock components arrive already styled by the preset — the `style` defines the standard shadcn vocabulary (`--background`, `--primary`, `--muted`, `--border`, `--radius-*`, ...) mapped onto ashlli values, plus the original ashlli names (`paper`, `ink`, `rule`, ...) for custom work.
 
 ## Usage
 
@@ -43,14 +33,12 @@ Import components from `@/components/ui` and compose them like any React compone
 ```tsx
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { CodePill } from '@/components/ui/code-pill'
 
 export function MyPage() {
   return (
     <div className="space-y-4">
-      <Badge symbol="◆">TECHNICAL</Badge>
-      <Button variant="primary">RUN BENCHMARK</Button>
-      <CodePill command="npm run dev" label="SHELL" />
+      <Badge variant="outline">TECHNICAL</Badge>
+      <Button>Run benchmark</Button>
     </div>
   )
 }
@@ -68,10 +56,17 @@ Follow these rules so the UI stays on-system:
 - **Restrained motion** — native CSS `transform`/`color` transitions only; no `transition: all`, no bouncy hovers, no animation libraries.
 - **Hairline rules** — separators are 1px, not heavy borders or shadows.
 
+## Tokens
+
+Two vocabularies travel together; see `references/tokens.md` for the full mapping table:
+
+- **ashlli vocabulary**: `paper`, `paper-2`, `ink`, `ink-2`, `rule`, `accent`, `accent-ink`, `focus`, `success`, `warning`, `error`, `info` — plus `radius-card` (8px), `radius-pill` (999px), `radius-input` (8px), and the `text-*` type scale.
+- **standard shadcn vocabulary** (what stock components read): `background`/`foreground` = paper/ink, `primary` = ink, `muted` = paper-2, `border`/`input` = rule, `ring` = focus, `destructive` = error, `accent` = ink (with `accent-foreground` = paper), plus a grayscale chart ramp and the standard radius scale.
+
 ## Troubleshooting
 
 ### My components are unstyled
-Your project must be configured for shadcn/ui with Tailwind v4 — a `styles.css`/`globals.css` that imports Tailwind and includes the `ashlli` `@theme` tokens. Re-run `npx shadcn@latest add sheunglaili/ashlli/style` and confirm the `@theme` block was written to your CSS.
+Your project must be configured for shadcn/ui with Tailwind v4 — a `styles.css`/`globals.css` that imports Tailwind and includes the ashlli token set. Re-run `npx shadcn@latest add sheunglaili/ashlli/style` and confirm the `@theme` block was written to your CSS.
 
 ### Dark mode doesn't work
 ashlli uses the `.dark` class on the root `<html>` element. Make sure your theme toggle adds/removes `.dark`; the tokens switch automatically.
@@ -84,4 +79,7 @@ Check your `tsconfig.json` maps `@/*` to your project root (e.g. `"@/*": ["./*"]
 
 ## References
 
-- `references/components.md` — every component: install command, import path, key props, and a minimal example.
+- `references/tokens.md` — the token mapping table: ashlli name, standard shadcn equivalent, light/dark values, and utilities.
+
+Base directory for this skill: skills/ashlli
+Relative paths in this skill (e.g. scripts/, reference/) are relative to this base directory.

@@ -24,6 +24,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Validate shadcn registry
+        run: npx shadcn@latest registry validate sheunglaili/ashlli
       - run: npm run build
       - name: Prepare static output for GitHub Pages
         run: |
