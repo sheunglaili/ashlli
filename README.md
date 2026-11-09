@@ -14,7 +14,7 @@ Install components straight into your project with the shadcn CLI. There's no lo
 1. Install the ashlli style (theme tokens, fonts, and Tailwind configuration):
 
 ```bash
-npx shadcn@latest add sheunglaili/ashlli/ashlli
+npx shadcn@latest add sheunglaili/ashlli/style
 ```
 
 2. Add any component. Dependencies resolve automatically:
@@ -23,6 +23,16 @@ npx shadcn@latest add sheunglaili/ashlli/ashlli
 npx shadcn@latest add sheunglaili/ashlli/button
 npx shadcn@latest add sheunglaili/ashlli/toast
 ```
+
+## Works with stock shadcn components
+
+The style maps the standard shadcn token vocabulary (`--background`, `--primary`, `--muted`, `--border`, `--radius-*`, ...) onto ashlli's ink-on-paper values. This means **any stock component from the default shadcn registry automatically renders in the ashlli look** — no code changes:
+
+```bash
+npx shadcn@latest add button   # stock shadcn button, styled by the ashlli theme
+```
+
+ashlli's own components remain optional upgrades on top, with the same token vocabulary (`paper`, `ink`, `rule`, ...) available under their original names.
 
 ## Components
 

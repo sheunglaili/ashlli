@@ -4,7 +4,7 @@
   "homepage": "https://github.com/sheunglaili/ashlli",
   "items": [
     {
-      "name": "ashlli",
+      "name": "style",
       "type": "registry:style",
       "title": "Ashlli Style",
       "description": "Monospaced ink-on-paper design system. Installs all theme tokens, fonts, and Tailwind v4 configuration.",
@@ -23,7 +23,30 @@
           "success": "oklch(55% 0.18 145)",
           "warning": "oklch(65% 0.18 75)",
           "error": "oklch(55% 0.22 25)",
-          "info": "oklch(55% 0.18 240)"
+          "info": "oklch(55% 0.18 240)",
+          "background": "oklch(100% 0 0)",
+          "foreground": "oklch(15% 0 0)",
+          "card": "oklch(100% 0 0)",
+          "card-foreground": "oklch(15% 0 0)",
+          "popover": "oklch(96.5% 0 0)",
+          "popover-foreground": "oklch(15% 0 0)",
+          "primary": "oklch(15% 0 0)",
+          "primary-foreground": "oklch(100% 0 0)",
+          "secondary": "oklch(96.5% 0 0)",
+          "secondary-foreground": "oklch(15% 0 0)",
+          "muted": "oklch(96.5% 0 0)",
+          "muted-foreground": "oklch(45% 0 0)",
+          "accent-foreground": "oklch(100% 0 0)",
+          "destructive": "oklch(55% 0.22 25)",
+          "destructive-foreground": "oklch(100% 0 0)",
+          "border": "oklch(83% 0 0)",
+          "input": "oklch(83% 0 0)",
+          "ring": "oklch(15% 0 0)",
+          "chart-1": "oklch(15% 0 0)",
+          "chart-2": "oklch(30% 0 0)",
+          "chart-3": "oklch(45% 0 0)",
+          "chart-4": "oklch(65% 0 0)",
+          "chart-5": "oklch(83% 0 0)"
         },
         "dark": {
           "paper": "oklch(12% 0 0)",
@@ -37,7 +60,30 @@
           "success": "oklch(70% 0.18 145)",
           "warning": "oklch(75% 0.18 75)",
           "error": "oklch(70% 0.22 25)",
-          "info": "oklch(70% 0.18 240)"
+          "info": "oklch(70% 0.18 240)",
+          "background": "oklch(12% 0 0)",
+          "foreground": "oklch(95% 0 0)",
+          "card": "oklch(12% 0 0)",
+          "card-foreground": "oklch(95% 0 0)",
+          "popover": "oklch(18% 0 0)",
+          "popover-foreground": "oklch(95% 0 0)",
+          "primary": "oklch(95% 0 0)",
+          "primary-foreground": "oklch(12% 0 0)",
+          "secondary": "oklch(18% 0 0)",
+          "secondary-foreground": "oklch(95% 0 0)",
+          "muted": "oklch(18% 0 0)",
+          "muted-foreground": "oklch(68% 0 0)",
+          "accent-foreground": "oklch(12% 0 0)",
+          "destructive": "oklch(70% 0.22 25)",
+          "destructive-foreground": "oklch(12% 0 0)",
+          "border": "oklch(30% 0 0)",
+          "input": "oklch(30% 0 0)",
+          "ring": "oklch(95% 0 0)",
+          "chart-1": "oklch(95% 0 0)",
+          "chart-2": "oklch(75% 0 0)",
+          "chart-3": "oklch(55% 0 0)",
+          "chart-4": "oklch(40% 0 0)",
+          "chart-5": "oklch(30% 0 0)"
         },
         "theme": {
           "font-display": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
@@ -57,7 +103,13 @@
           "text-base-plus": "0.95rem",
           "text-lg": "1.05rem",
           "text-xl": "1.3rem",
-          "text-display": "2.25rem"
+          "text-display": "2.25rem",
+          "font-sans": "\"JetBrains Mono\", ui-monospace, SFMono-Regular, Menlo, monospace",
+          "radius": "8px",
+          "radius-sm": "4px",
+          "radius-md": "6px",
+          "radius-lg": "8px",
+          "radius-xl": "12px"
         }
       },
       "css": {
@@ -147,7 +199,9 @@
       "type": "registry:ui",
       "title": "Code Pill",
       "description": "Monospaced inline code with copy-to-clipboard.",
-      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "registryDependencies": [
+        "sheunglaili/ashlli/icons"
+      ],
       "files": [
         {
           "path": "src/components/ui/code-pill.tsx",
@@ -174,7 +228,9 @@
       "type": "registry:ui",
       "title": "Dialog",
       "description": "Modal dialog with overlay, header, and close button.",
-      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "registryDependencies": [
+        "sheunglaili/ashlli/icons"
+      ],
       "files": [
         {
           "path": "src/components/ui/dialog.tsx",
@@ -214,7 +270,9 @@
       "type": "registry:ui",
       "title": "Leaderboard",
       "description": "Ranked progress bar with label and value.",
-      "registryDependencies": ["sheunglaili/ashlli/progress-bar"],
+      "registryDependencies": [
+        "sheunglaili/ashlli/progress-bar"
+      ],
       "files": [
         {
           "path": "src/components/ui/leaderboard-bar.tsx",
@@ -280,7 +338,9 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "Notification toast with auto-dismiss.",
-      "registryDependencies": ["sheunglaili/ashlli/icons"],
+      "registryDependencies": [
+        "sheunglaili/ashlli/icons"
+      ],
       "files": [
         {
           "path": "src/components/ui/toast.tsx",

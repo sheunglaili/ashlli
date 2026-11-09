@@ -3,7 +3,7 @@
 All components install via the shadcn CLI and land in `@/components/ui/`. Install the `ashlli` style first:
 
 ```bash
-npx shadcn@latest add sheunglaili/ashlli/ashlli
+npx shadcn@latest add sheunglaili/ashlli/style
 ```
 
 Then add any component:

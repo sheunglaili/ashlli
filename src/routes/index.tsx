@@ -28,7 +28,7 @@ function HomePage() {
                 READ THE DOCS
               </Button>
             </Link>
-            <CodePill command="npx shadcn@latest add sheunglaili/ashlli/ashlli" label="START" />
+            <CodePill command="npx shadcn@latest add sheunglaili/ashlli/style" label="START" />
           </div>
         </div>
       </section>

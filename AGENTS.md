@@ -150,7 +150,7 @@ If the component imports from another ashlli component (e.g. `./icons`), add `re
 }
 ```
 
-Keep alphabetical order by `name` in the items array. The `ashlli` style item (type `registry:style`) must remain first.
+Keep alphabetical order by `name` in the items array. The `style` item (type `registry:style`) must remain first.
 
 ## 3. Add a docs page
 
@@ -183,7 +183,7 @@ Users install ashlli components via the shadcn CLI:
 
 ```bash
 # Add the ashlli style (tokens, fonts, theme)
-npx shadcn@latest add sheunglaili/ashlli/ashlli
+npx shadcn@latest add sheunglaili/ashlli/style
 
 # Add individual components (dependencies auto-resolve)
 npx shadcn@latest add sheunglaili/ashlli/button

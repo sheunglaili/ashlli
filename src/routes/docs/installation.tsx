@@ -61,7 +61,7 @@ function InstallationPage() {
           <p className="text-sm text-ink-2 leading-relaxed">
             Adds the theme tokens, fonts, and Tailwind configuration to your project:
           </p>
-          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/ashlli" label="SHELL" />
+          <CodePill command="npx shadcn@latest add sheunglaili/ashlli/style" label="SHELL" />
         </section>
 
         {/* Step 2 */}

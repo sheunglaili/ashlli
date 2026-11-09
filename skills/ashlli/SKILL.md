@@ -20,7 +20,7 @@ Run the CLI from the project root (where `package.json` lives). Install the ashl
 
 ```bash
 # 1. The style: theme tokens, fonts, and Tailwind configuration
-npx shadcn@latest add sheunglaili/ashlli/ashlli
+npx shadcn@latest add sheunglaili/ashlli/style
 
 # 2. Any component by registry name
 npx shadcn@latest add sheunglaili/ashlli/button
@@ -71,7 +71,7 @@ Follow these rules so the UI stays on-system:
 ## Troubleshooting
 
 ### My components are unstyled
-Your project must be configured for shadcn/ui with Tailwind v4 — a `styles.css`/`globals.css` that imports Tailwind and includes the `ashlli` `@theme` tokens. Re-run `npx shadcn@latest add sheunglaili/ashlli/ashlli` and confirm the `@theme` block was written to your CSS.
+Your project must be configured for shadcn/ui with Tailwind v4 — a `styles.css`/`globals.css` that imports Tailwind and includes the `ashlli` `@theme` tokens. Re-run `npx shadcn@latest add sheunglaili/ashlli/style` and confirm the `@theme` block was written to your CSS.
 
 ### Dark mode doesn't work
 ashlli uses the `.dark` class on the root `<html>` element. Make sure your theme toggle adds/removes `.dark`; the tokens switch automatically.
